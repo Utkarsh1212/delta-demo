@@ -9,6 +9,13 @@ This repository contains SQL scripts and supporting files for creating a Postgre
    createUserDatabase.sql         # Script to create a new user and database
    dropUserDatabase.sql           # Script to clean up the user and database
    load_ipl_data.sql              # Script to create tables and load data from CSV
+
+   Scenarios:
+   matches_played_per_year.sql
+   matches_won_per_team_per_ year.sql
+   extra_runs_conceded_per_team_2016.sql
+   top_economical_bowlers_2015.sql
+
                                
 # data/
    matches.csv                    # IPL matches data
@@ -69,8 +76,19 @@ After loading, you can verify the data with the following queries:
   ```sql
   SELECT COUNT(*) FROM deliveries;
   ```
+  
+### 5. Scenarios
 
-### 5. Clean Up
+To perform the various scenarios in IPL, run these scripts:
+
+```bash
+psql -U postgres -f scripts/matches_played_per_year.sql
+psql -U postgres -f scripts/matches_won_per_team_per_ year.sql
+psql -U postgres -f scripts/extra_runs_conceded_per_team_2016.sql
+psql -U postgres -f scripts/top_economical_bowlers_2015.sql
+```
+
+### 6. Clean Up
 
 If you need to remove the database and user, run the cleanup script:
 
@@ -82,12 +100,19 @@ This script:
 1. Drops the `ipl_database` database.
 2. Drops the `ipl_user` user.
 
+   
+
 ## Files Description
 
 ### Scripts
 - **`createUserDatabase.sql`**: Creates a new user and database, assigning ownership to the user.
 - **`dropUserDatabase.sql`**: Cleans up the user and database created.
 - **`load_ipl_data.sql`**: Creates the `matches` and `deliveries` tables and imports data from the CSV files.
+
+- **`matches_played_per_year.sql`**: To find number of matches played per year of all the years in IPL.
+- **`matches_won_per_team_per_ year.sql`**: To find number of matches won of all teams over all the years of IPL.
+- **`extra_runs_conceded_per_team_2016.sql`**: To find the extra runs conceded per team for the year 2016.
+- **`top_economical_bowlers_2015.sql`**: To find the top economical bowlers for the year 2015 .
 
 ### Data
 - **`matches.csv`**: Contains IPL match information.
